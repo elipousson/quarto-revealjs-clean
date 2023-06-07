@@ -1,28 +1,77 @@
 /*-- scss:defaults --*/
 
-// Custom colours and variables
-$jet: #131516;
-$accent: #107895;
-$accent2: #9a2515;
+// color palette
+// https://personal.sron.nl/~pault/#fig:scheme_light
+$tol-light-light-blue: #77AADD;
+$tol-light-orange: #EE8866;
+$tol-light-light-yellow: #EEDD88;
+$tol-light-pink: #FFAABB;
+$tol-light-light-cyan: #99DDFF;
+$tol-light-mint-green: #44BB99;
+$tol-light-pear: #BBCC33;
+$tol-light-olive: #AAAA00;
+$tol-light-pale-grey:#DDDDDD;
+
+$tol-medium-white: #FFFFFF;
+$tol-medium-light-blue: #6699CC;
+$tol-medium-dark-blue: #004488;
+$tol-medium-light-yellow: #EECC66;
+$tol-medium-dark-yellow: #997700;
+$tol-medium-dark-red: #994455;
+$tol-medium-light-red: #EE99AA;
+$tol-medium-black: #000000;
+
+// color variables
+
+$dark-color: #131516;
+$accent1: $tol-medium-dark-blue; //$tol-light-mint-green;
+$accent1-light: $tol-medium-light-blue; //$tol-light-mint-green;
+$accent2: $tol-medium-dark-red;
+
+// text colors
+
+//$body-bg: #f0f1eb !default;
+$body-color: $dark-color !default;
+$link-color: $accent1 !default;
+$selection-bg: mix($tol-medium-dark-yellow, black, 60%) !default;
+
+$fg-color: var(--col, $dark-color);
+$bg-color: var(--col, #fff);
+
+$ul-color1: mix($accent1, white, 80%);
+$ul-color2: mix($dark-color, white, 60%);
+
 $right-arrow: "\2192"; // Unicode character for right arrow
 
 // fonts
-@import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
+// @import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Noto+Color+Emoji&family=Noto+Emoji:wght@300&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 $font-family-sans-serif: "Roboto", sans-serif !default;
 $presentation-font-size-root: 36px;
+$font-family-emoji: "Noto Color Emoji";
 
-$presentation-heading-font: "Roboto", sans-serif !default;
-$presentation-heading-color: $jet !default;
-$presentation-heading-font-weight: 200;
+// Font weights
+$light: 300;
+$regular: 400;// $regular: 300;
+$semibold: 500;// $semibold: 350;
+$bold: 700;//$bold: 400;
+// $black: 700;
+
+// Heading sizes, colors, and weights
+$large-heading: 1.4em;
+$medium-heading: 1.25em;
+$small-heading: 0.95em;
+$button-font-size: 0.5em;
+
+$presentation-heading-font: $font-family-sans-serif !default;
+$presentation-heading-color: $dark-color !default;
+$presentation-heading-font-weight: $light;
 //$presentation-heading-line-height: 2;
 //$presentation-block-margin: 28px;
 
-// colors
-//$body-bg: #f0f1eb !default;
-$body-color: $jet !default;
-$link-color: $accent !default;
-$selection-bg: #26351c !default;
-
+//code
+$code-color: $dark-color !default;
+$font-family-monospace: 'Fira Code', monospace  !default;
 
 /*-- scss:rules --*/
 
@@ -31,7 +80,7 @@ $selection-bg: #26351c !default;
 }
 
 .reveal p {
-  font-weight: 300;
+  font-weight: $regular;
   margin-top: 1.25em;
 }
 
@@ -42,13 +91,13 @@ $selection-bg: #26351c !default;
 
   .title {
     color: $body-color;
-    font-size: 1.4em;
-    font-weight: 350;
+    font-size: $large-heading;
+    font-weight: $semibold;
     line-height: 0;
   }
 
   .subtitle {
-    color: $accent;
+    color: $accent1;
     font-style: italic;
   }
 
@@ -80,20 +129,20 @@ $selection-bg: #26351c !default;
 
 
 .reveal h2 {
-  font-weight: 350;
-  font-size: 1.4em;
+  font-weight: $semibold;
+  font-size: $large-heading;
 }
 
 .reveal h3 {
-  color: $accent;
+  color: $accent1;
   font-style: italic;
-  font-weight: 350;
-  font-size: 0.95em;
+  font-weight: $semibold;
+  font-size: $small-heading;
 }
 
 .reveal h4 {
   color: $accent2;
-  font-weight: 350;
+  font-weight: $semibold;
   margin-top: 1.25em;
 }
 
@@ -104,26 +153,31 @@ $selection-bg: #26351c !default;
 }
 
 .fg {
-  color: var(--col, $jet);
+  color: $fg-color;
 }
 
 .bg {
-  background-color: var(--col, #fff);
+  background-color: $bg-color;
   padding: 0.1em;
   border-radius: 5px;
   display: inline-block;
 }
 
+// emoji
+
+.noto-emoji {
+  font-family: $font-family-emoji;
+}
+
 // lists
 
 // Unordered lists
-
 .reveal ul {
-  font-weight: 300;
+  font-weight: $regular;
   padding-left: 16px;
 
   li::marker {
-    color: mix($accent, white, 70%);
+    color: $ul-color1;
   }
 }
 
@@ -132,7 +186,7 @@ $selection-bg: #26351c !default;
 
   li:before {
     content: $right-arrow;
-    color: mix($accent, white, 60%);
+    color: $ul-color2;
     display: inline-block;
     width: 1em;
     margin-left: -1em;
@@ -143,11 +197,11 @@ $selection-bg: #26351c !default;
 // Ordered lists
 
 .reveal ol {
-  font-weight: 300;
+  font-weight: $regular;
   padding-left: 16px;
 
   li::marker {
-    color: $accent;
+    color: $accent1;
   }
 }
 
@@ -155,8 +209,8 @@ $selection-bg: #26351c !default;
 
 .reveal .slide-menu-button {
   position: fixed;
-  top: 6px;
-  right: 0;
+  top: 4px;
+  right: 4px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
@@ -190,15 +244,15 @@ $selection-bg: #26351c !default;
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: $button-font-size;
+  font-weight: $bold;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  background-color: $accent;
-  border: 1px solid $accent;
+  background-color: $accent1;
+  border: 1px solid $accent1;
   color: #fff !important;
   text-decoration: none;
   border-radius: 4px;
@@ -206,8 +260,8 @@ $selection-bg: #26351c !default;
 }
 
 .button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: mix($accent1, white, 60%);
+  border-color: $accent1;
 }
 
 .button::before {
