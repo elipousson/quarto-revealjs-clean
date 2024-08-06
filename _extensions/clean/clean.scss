@@ -43,7 +43,24 @@ $ul-color2: mix($dark-color, white, 60%);
 
 $right-arrow: "\2192"; // Unicode character for right arrow
 
+
 // fonts
+
+/*
+Note: This theme uses the Roboto font family, which it imports from Google
+  Fonts to ensure consistent weighting in addition to availability. While
+  you can use a local installation of Roboto, this is generally not 
+  recommended since the weighting will likely be wrong (probably too
+  light). OTOH, importing from Google Fonts can cause some issues in
+  certain secure environments due the external CDN (see:
+  https://github.com/grantmcdermott/quarto-revealjs-clean/issues/7). If
+  that's the case for you, simply comment out the `@import url(...)` line
+  below and it will default for the default Sans Serif font on your system
+  (e.g., Helvetica on a Mac). Circling back to the earlier point about
+  preserving consistent font weights, you may also wish to remove "Roboto"
+  from the choice set if the family is installed locally.
+*/
+
 // @import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Noto+Color+Emoji&family=Noto+Emoji:wght@300&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 $font-family-sans-serif: "Public Sans", sans-serif !default;
@@ -66,8 +83,10 @@ $button-font-size: 0.5em;
 $presentation-heading-font: $font-family-sans-serif !default;
 $presentation-heading-color: $dark-color !default;
 $presentation-heading-font-weight: $light;
+
 //$presentation-heading-line-height: 2;
 //$presentation-block-margin: 28px;
+$presentation-font-size-root: 32px;
 
 //code
 $code-color: $dark-color !default;
@@ -99,6 +118,7 @@ $font-family-monospace: 'Fira Code', monospace  !default;
     color: $accent1;
     font-style: italic;
     margin-top: 0em;
+    font-weight: lighter;
   }
 
   .institute,
@@ -143,6 +163,7 @@ $font-family-monospace: 'Fira Code', monospace  !default;
 .reveal h4 {
   color: $accent2;
   font-weight: $semibold;
+  // font-weight: 350;
   margin-top: 1.25em;
 }
 
@@ -267,6 +288,42 @@ $font-family-monospace: 'Fira Code', monospace  !default;
 .button::before {
   content: "▶";
   margin-right: 5px;
+}
+
+// tables
+
+.reveal table {
+  // height: auto; /* Adjust table width to fit content up to the available slide space */
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.8em;
+}
+
+.reveal table th,
+.reveal table td {
+  border: none; /* Remove internal row lines */
+  padding: .23em; /* Adjust padding as needed */
+  text-align: left; /* Adjust text alignment as needed */
+  font-weight: lighter; /* Lighter font weight for main table text */
+}
+
+/* Adds a bottom border to the table header row for distinction */
+.reveal table thead th,
+.reveal .slides table tr:last-child td,
+.reveal .slides table {
+  border-bottom: 2px solid #D3D3D3; /* Dark grey color for the bottom border */
+}
+
+/* Make column headers bold */
+.reveal table thead th {
+  font-weight: bold;
+}
+
+/* Styling table captions */
+.reveal table caption {
+  color: #666666; /* Dark grey color for the caption */
+  font-variant: small-caps; /* Use small caps for the caption text */
 }
 
 // Special catch for etable environment to ensure these table images
